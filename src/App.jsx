@@ -63,7 +63,7 @@ const App = () => {
 
   return (
     <div id="root">
-      <button className="open-button" onClick={handleOpenModal}>Open Form</button>
+      {isModalOpen?null:<button className="open-button" onClick={handleOpenModal}>Open Form</button>}
       {isModalOpen && (
         <div className="modal" onClick={handleOutsideClick}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
