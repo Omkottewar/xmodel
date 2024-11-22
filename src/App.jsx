@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import "./App.css"; 
+import "./App.css";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,62 +55,65 @@ const App = () => {
     }
   };
 
+  const handleOutsideClick = (e) => {
+    if (e.target.classList.contains("modal")) {
+      handleCloseModal();
+    }
+  };
+
   return (
-    <div className="modal">
+    <div className="app">
       <button onClick={handleOpenModal}>Open Form</button>
       {isModalOpen && (
-        <div
-          className="modal-content"
-          onClick={(e) => {
-            if (e.target.className === "modal-content") handleCloseModal();
-          }}
-        >
-          <div className="form-container" onClick={(e) => e.stopPropagation()}>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                />
-                {errors.username && <p className="error">{errors.username}</p>}
-              </div>
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                {errors.email && <p className="error">{errors.email}</p>}
-              </div>
-              <div>
-                <label htmlFor="dob">Date of Birth</label>
-                <input
-                  type="date"
-                  id="dob"
-                  value={formData.dob}
-                  onChange={handleInputChange}
-                />
-                {errors.dob && <p className="error">{errors.dob}</p>}
-              </div>
-              <div>
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-                {errors.phone && <p className="error">{errors.phone}</p>}
-              </div>
-              <button type="submit" className="submit-button">
-                Submit
-              </button>
-            </form>
+        <div className="modal" onClick={handleOutsideClick}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="form-container">
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                  />
+                  {errors.username && <p className="error">{errors.username}</p>}
+                </div>
+                <div>
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                  {errors.email && <p className="error">{errors.email}</p>}
+                </div>
+                <div>
+                  <label htmlFor="dob">Date of Birth</label>
+                  <input
+                    type="date"
+                    id="dob"
+                    value={formData.dob}
+                    onChange={handleInputChange}
+                  />
+                  {errors.dob && <p className="error">{errors.dob}</p>}
+                </div>
+                <div>
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                  />
+                  {errors.phone && <p className="error">{errors.phone}</p>}
+                </div>
+                <button type="submit" className="submit-button">
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}
